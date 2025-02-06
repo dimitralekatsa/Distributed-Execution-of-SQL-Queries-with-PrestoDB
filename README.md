@@ -7,7 +7,7 @@ POSTGRES
 1.  docker start postgres
 2. docker exec -it postgres psql -U admin -d testdb
 3. \i /tpcds/postgres_schema.sql
-4. \dt # only to check if the tables have been created
+4. \dt -- only to check if the tables have been created
 5. \q
 6. docker cp ~/tpcds-kit/tools/data/ postgres:/data/
 7. docker exec -it postgres psql -U admin -d testdb
@@ -17,7 +17,7 @@ POSTGRES
 CASSANDRA
 1. docker start cassandra
 2. docker exec -it cassandra cqlsh -f ~/tpcds-kit/tools/tpcds/cassandra_schema.cql
-3. docker exec -it cassandra cqlsh -e "USE tpcds; DESCRIBE TABLES;" # only to check if the tables have been created
+3. docker exec -it cassandra cqlsh -e "USE tpcds; DESCRIBE TABLES;" -- only to check if the tables have been created
 4. python3 ~/tpcds-kit/tools/tpcds/load_cassandra.py
 
 MONGODB
