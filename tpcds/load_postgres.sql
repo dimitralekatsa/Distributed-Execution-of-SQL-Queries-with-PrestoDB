@@ -1,4 +1,3 @@
-COPY dbgen_version FROM '/dbgen_version.dat' WITH DELIMITER '|' CSV;
 COPY customer_address FROM '/customer_address.dat' WITH DELIMITER '|' CSV;
 COPY customer_demographics FROM '/customer_demographics.dat' WITH DELIMITER '|' CSV;
 COPY date_dim FROM '/date_dim.dat' WITH DELIMITER '|' CSV;

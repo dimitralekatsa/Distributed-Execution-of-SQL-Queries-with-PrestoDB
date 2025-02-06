@@ -8,7 +8,6 @@ CSV_DIR = os.path.expanduser("~/tpcds-kit/tools/tpcds_csv/")
 
 # Define Primary Keys for MongoDB (to override `_id`)
 PRIMARY_KEYS = {
-    "dbgen_version": "",
     "customer_address": "ca_address_sk",
     "customer_demographics": "cd_demo_sk",
     "date_dim": "d_date_sk",

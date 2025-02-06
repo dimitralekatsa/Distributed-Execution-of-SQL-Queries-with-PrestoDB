@@ -3,7 +3,6 @@ import csv
 
 # Define your TPC-DS tables and their respective column names
 TABLE_SCHEMAS = {
-    "dbgen_version": ["dv_version","dv_cmdline_args", "dv_create_date", "dv_create_time"],
     "customer_address": ["ca_address_sk", "ca_address_id", "ca_street_number", "ca_street_name", "ca_street_type",
                          "ca_suite_number", "ca_city", "ca_county", "ca_state", "ca_zip", "ca_country",
                          "ca_gmt_offset", "ca_location_type"],
@@ -106,7 +105,7 @@ def convert_dat_to_csv():
             input_file = os.path.join(INPUT_DIR, file_name)
             output_file = os.path.join(OUTPUT_DIR, f"{table_name}.csv")
 
-            with open(input_file, "r") as dat_file, open(output_file, "w", newline="") as csv_file:
+            with open(input_file, "r", encoding="utf-8", errors="replace") as dat_file, open(output_file, "w", newline="") as csv_file:
                 csv_writer = csv.writer(csv_file, quoting=csv.QUOTE_MINIMAL)
                 csv_writer.writerow(TABLE_SCHEMAS[table_name])  # Write headers
 

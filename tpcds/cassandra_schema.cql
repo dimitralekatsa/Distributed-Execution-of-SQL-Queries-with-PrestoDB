@@ -2,13 +2,6 @@ CREATE KEYSPACE IF NOT EXISTS tpcds WITH replication = {'class': 'SimpleStrategy
 
 USE tpcds;
 
-CREATE TABLE IF NOT EXISTS dbgen_version (
-    dv_version TEXT PRIMARY KEY,	-- primary key 
-    dv_create_date DATE,
-    dv_create_time TEXT,
-    dv_cmdline_args TEXT
-);
-
 CREATE TABLE IF NOT EXISTS customer_address (
     ca_address_sk INT PRIMARY KEY,
     ca_address_id TEXT,
