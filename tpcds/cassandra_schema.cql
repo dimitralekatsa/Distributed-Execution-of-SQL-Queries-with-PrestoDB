@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS customer_address (
     ca_location_type TEXT
 );
 
-CREATE TABLE customer_demographics (
+CREATE TABLE IF NOT EXISTS customer_demographics (
     cd_demo_sk INT PRIMARY KEY,
     cd_gender TEXT,
     cd_marital_status TEXT,
@@ -30,7 +30,7 @@ CREATE TABLE customer_demographics (
     cd_dep_college_count INT
 );
 
-CREATE TABLE date_dim (
+CREATE TABLE IF NOT EXISTS date_dim (
     d_date_sk INT PRIMARY KEY,
     d_date_id TEXT,
     d_date DATE,
@@ -61,7 +61,7 @@ CREATE TABLE date_dim (
     d_current_year TEXT
 );
 
-CREATE TABLE warehouse (
+CREATE TABLE IF NOT EXISTS warehouse (
     w_warehouse_sk INT PRIMARY KEY,
     w_warehouse_id TEXT,
     w_warehouse_name TEXT,
@@ -78,7 +78,7 @@ CREATE TABLE warehouse (
     w_gmt_offset DECIMAL
 );
 
-CREATE TABLE ship_mode (
+CREATE TABLE IF NOT EXISTS ship_mode (
     sm_ship_mode_sk INT PRIMARY KEY,
     sm_ship_mode_id TEXT,
     sm_type TEXT,
@@ -87,7 +87,7 @@ CREATE TABLE ship_mode (
     sm_contract TEXT
 );
 
-CREATE TABLE time_dim (
+CREATE TABLE IF NOT EXISTS time_dim (
     t_time_sk INT PRIMARY KEY,
     t_time INT,
     t_hour INT,
@@ -99,19 +99,19 @@ CREATE TABLE time_dim (
     t_meal_time TEXT
 );
 
-CREATE TABLE reason (
+CREATE TABLE IF NOT EXISTS reason (
     r_reason_sk INT PRIMARY KEY,
     r_reason_id TEXT,
     r_reason_desc TEXT
 );
 
-CREATE TABLE income_band (
+CREATE TABLE IF NOT EXISTS income_band (
     ib_income_band_sk INT PRIMARY KEY,
     ib_lower_bound INT,
     ib_upper_bound INT
 );
 
-CREATE TABLE item (
+CREATE TABLE IF NOT EXISTS item (
     i_item_sk INT PRIMARY KEY,
     i_item_id TEXT,
     i_rec_start_date DATE,
@@ -136,7 +136,7 @@ CREATE TABLE item (
     i_product_name TEXT
 );
 
-CREATE TABLE store (
+CREATE TABLE IF NOT EXISTS store (
     s_store_sk INT PRIMARY KEY,
     s_store_id TEXT,
     s_rec_start_date DATE,
@@ -168,7 +168,7 @@ CREATE TABLE store (
     s_tax_precentage DECIMAL
 );
 
-CREATE TABLE call_center (
+CREATE TABLE IF NOT EXISTS call_center (
     cc_call_center_sk INT PRIMARY KEY,
     cc_call_center_id TEXT,
     cc_rec_start_date DATE,
@@ -223,7 +223,7 @@ CREATE TABLE customer (
     c_last_review_date TEXT
 );
 
-CREATE TABLE web_site (
+CREATE TABLE IF NOT EXISTS web_site (
     web_site_sk INT PRIMARY KEY,
     web_site_id TEXT,
     web_rec_start_date DATE,
@@ -252,7 +252,7 @@ CREATE TABLE web_site (
     web_tax_percentage DECIMAL
 );
 
-CREATE TABLE store_returns (
+CREATE TABLE IF NOT EXISTS store_returns (
     sr_returned_date_sk INT,
     sr_item_sk INT,
     sr_customer_sk INT,
@@ -270,7 +270,7 @@ CREATE TABLE store_returns (
     PRIMARY KEY (sr_item_sk, sr_ticket_number)
 );
 
-CREATE TABLE household_demographics (
+CREATE TABLE IF NOT EXISTS household_demographics (
     hd_demo_sk INT PRIMARY KEY,
     hd_income_band_sk INT,
     hd_buy_potential TEXT,
@@ -278,7 +278,7 @@ CREATE TABLE household_demographics (
     hd_vehicle_count INT
 );
 
-CREATE TABLE web_page (
+CREATE TABLE IF NOT EXISTS web_page (
     wp_web_page_sk INT PRIMARY KEY,
     wp_web_page_id TEXT,
     wp_rec_start_date DATE,
@@ -295,7 +295,7 @@ CREATE TABLE web_page (
     wp_max_ad_count INT
 );
 
-CREATE TABLE promotion (
+CREATE TABLE IF NOT EXISTS promotion (
     p_promo_sk INT PRIMARY KEY,
     p_promo_id TEXT,
     p_start_date_sk INT,
@@ -317,7 +317,7 @@ CREATE TABLE promotion (
     p_discount_active TEXT
 );
 
-CREATE TABLE catalog_page (
+CREATE TABLE IF NOT EXISTS catalog_page (
     cp_catalog_page_sk INT PRIMARY KEY,
     cp_catalog_page_id TEXT,
     cp_start_date_sk INT,
@@ -329,7 +329,7 @@ CREATE TABLE catalog_page (
     cp_type TEXT
 );
 
-CREATE TABLE inventory (
+CREATE TABLE IF NOT EXISTS inventory (
     inv_date_sk INT,
     inv_item_sk INT,
     inv_warehouse_sk INT,
@@ -337,7 +337,7 @@ CREATE TABLE inventory (
     PRIMARY KEY (inv_date_sk, inv_item_sk, inv_warehouse_sk)
 );
 
-CREATE TABLE catalog_returns (
+CREATE TABLE IF NOT EXISTS catalog_returns (
     cr_returned_date_sk INT,
     cr_item_sk INT,
     cr_refunded_customer_sk INT,
@@ -367,7 +367,7 @@ CREATE TABLE catalog_returns (
     PRIMARY KEY (cr_item_sk, cr_order_number)
 );
 
-CREATE TABLE web_returns (
+CREATE TABLE IF NOT EXISTS web_returns (
     wr_returned_date_sk INT,
     wr_item_sk INT,
     wr_refunded_customer_sk INT,
@@ -394,7 +394,7 @@ CREATE TABLE web_returns (
     PRIMARY KEY (wr_item_sk, wr_order_number)
 );
 
-CREATE TABLE web_sales (
+CREATE TABLE IF NOT EXISTS web_sales (
     ws_sold_date_sk INT,
     ws_sold_time_sk INT,
     ws_ship_date_sk INT,
@@ -432,7 +432,7 @@ CREATE TABLE web_sales (
     PRIMARY KEY (ws_item_sk, ws_order_number)
 );
 
-CREATE TABLE catalog_sales (
+CREATE TABLE IF NOT EXISTS catalog_sales (
     cs_sold_date_sk INT,
     cs_sold_time_sk INT,
     cs_ship_date_sk INT,
@@ -470,7 +470,7 @@ CREATE TABLE catalog_sales (
     PRIMARY KEY (cs_item_sk, cs_order_number)
 );
 
-CREATE TABLE store_sales (
+CREATE TABLE IF NOT EXISTS store_sales (
     ss_sold_date_sk INT,
     ss_sold_time_sk INT,
     ss_item_sk INT,
