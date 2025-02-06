@@ -6,7 +6,7 @@
 POSTGRES
 1.  docker start postgres
 2. docker exec -it postgres psql -U admin -d testdb
-3. \i /tpcds/postgresql_schema.sql
+3. \i /tpcds/postgres_schema.sql
 4. \dt # only to check if the tables have been created
 5. \q
 6. docker cp ~/tpcds-kit/tools/data/ postgres:/data/
