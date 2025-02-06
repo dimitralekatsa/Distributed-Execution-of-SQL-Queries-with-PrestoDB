@@ -1,10 +1,10 @@
 # Information-Systems-Analysis-and-Design-Class
  Distributed Execution of SQL Queries
 
-**1.python3 ~/tpcds-kit/tools/tpcds/convert_files_to_csv.py**
+**1. python3 ~/tpcds-kit/tools/tpcds/convert_files_to_csv.py**
 
 POSTGRES
-1. docker start postgres
+1.  docker start postgres
 2. docker exec -it postgres psql -U admin -d testdb
 3. \i /tpcds/postgresql_schema.sql
 4. \dt # only to check if the tables have been created
