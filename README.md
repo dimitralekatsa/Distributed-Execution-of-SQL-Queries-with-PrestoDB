@@ -1,7 +1,7 @@
 # Information-Systems-Analysis-and-Design-Class
  Distributed Execution of SQL Queries
 
-*1.python3 ~/tpcds-kit/tools/tpcds/convert_files_to_csv.py*
+**1.python3 ~/tpcds-kit/tools/tpcds/convert_files_to_csv.py**
 
 POSTGRES
 1. docker exec -it postgres psql -U admin -d testdb
@@ -11,7 +11,7 @@ POSTGRES
 5. docker cp ~/tpcds-kit/tools/data/ postgres:/data/
 6. docker exec -it postgres psql -U admin -d testdb
 7. \i /tpcds/load_postgres.sql
-\q
+8. \q
 
 CASSANDRA
 1. docker exec -it cassandra cqlsh -f ~/tpcds-kit/tools/tpcds/cassandra_schema.cql
