@@ -15,9 +15,8 @@ POSTGRES
 9. \q
 
 CASSANDRA
-1. docker start cassandra
-2. docker cp ~/tpcds-kit/tools/tpcds/cassandra_schema.cql cassandra:/tmp/cassandra_schema.cql
-3. docker exec -it cassandra cqlsh -f ~/tpcds-kit/tools/tpcds/cassandra_schema.cql
+1. docker run -d --name cassandra --memory=4g -v ~/tpcds-kit/tools/tpcds:/data cassandra
+2. docker exec -it cassandra cqlsh -f /data/cassandra_schema.cql
 4. docker exec -it cassandra cqlsh -e "USE tpcds; DESCRIBE TABLES;" -- only to check if the tables have been created
 5. python3 ~/tpcds-kit/tools/tpcds/load_cassandra.py
 
