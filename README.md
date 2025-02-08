@@ -14,6 +14,7 @@ Settings -> Resources -> WSL Integration -> Unckeck "Ubuntu-20.04"
 **Stop Docker:** docker-compose down
 
 **TPC-DS Benchmark Download and Data Generation**
+(Windows User: open WSL)
 1. git clone https://github.com/databricks/tpcds-kit.git
 2. cd tpcds-kit/tools
 3. make OS=LINUX
