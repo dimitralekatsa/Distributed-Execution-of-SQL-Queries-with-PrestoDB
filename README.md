@@ -4,7 +4,7 @@
 **Error** WSL integration with distro 'Ubuntu-20.04' unexpectedly stopped. Do you want to restart it?
 1. wsl --shutdown
 2. wsl --set-version Ubuntu-20.04 2
-3. End-task Docker Desktop in Task Manager
+3. End task Docker Desktop in Task Manager
 4. Open Docker Desktop.
    Settings -> Resources -> WSL Integration -> Unckeck "Ubuntu-20.04"
 5. wsl --unregister Ubuntu-20.04
