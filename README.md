@@ -13,6 +13,12 @@ Settings -> Resources -> WSL Integration -> Unckeck "Ubuntu-20.04"
 
 **Stop Docker:** docker-compose down
 
+**TPC-DS Benchmark Download and Data Generation**
+1. git clone https://github.com/databricks/tpcds-kit.git
+2. cd tpcds-kit/tools
+3. make OS=LINUX
+4. ./dsdgen -SCALE 12 -DIR ./data
+
 **1. python3 ~/tpcds-kit/tools/tpcds/convert_files_to_csv.py**
 
 POSTGRES
