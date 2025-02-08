@@ -10,6 +10,7 @@ Settings -> Resources -> WSL Integration -> Unckeck "Ubuntu-20.04"
 5. wsl --unregister Ubuntu-20.04
 
 **Start Docker:** docker-compose up -d
+**Stop Docker:** docker-compose down
 
 **1. python3 ~/tpcds-kit/tools/tpcds/convert_files_to_csv.py**
 
