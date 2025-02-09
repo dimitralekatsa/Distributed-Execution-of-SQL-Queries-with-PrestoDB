@@ -1,0 +1,128 @@
+---
+#----------------
+
+# version: "3"
+version: "3"
+services:
+  #
+  coordinator:
+    image: prestodb/presto:latest
+    ports:
+      - "8080:8080"
+    container_name: "coordinator"
+    volumes:
+      - ./presto-multi/coordinator:/opt/presto-server/etc
+
+  worker1:
+    image: prestodb/presto:latest
+    container_name: "worker1"
+    volumes:
+      - ./presto-multi/worker1:/opt/presto-server/etc
+  # worker2:
+  #   image: prestodb/presto:latest
+  #   container_name: "worker2"
+  #   volumes:
+  #     - ./presto-multi/worker2:/opt/presto-server/etc
+  # worker4:
+  #   image: prestodb/presto:latest
+  #   container_name: "worker4"
+  #   volumes:
+  #     - ./presto-multi/worker4:/opt/presto-server/etc
+
+  # PostgreSQL
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    environment:
+      POSTGRES_USER: presto
+      POSTGRES_PASSWORD: presto
+      POSTGRES_DB: tpcds
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U presto"]
+      interval: 10s
+      retries: 5
+      timeout: 5s
+    volumes:
+      - ./data:/data
+
+  # Cassandra
+  cassandra:
+    image: cassandra:latest
+    container_name: cassandra
+    ports:
+      - "9042:9042"
+    volumes:
+      - ./data:/data
+    healthcheck:
+      test: ["CMD", "cqlsh", "-e", "DESCRIBE KEYSPACES"]
+      interval: 10s
+      retries: 5
+      timeout: 5s
+
+  # MongoDB
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./data:/data
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
+
+  # worker2:
+  #   image: prestodb/presto:latest
+  #   container_name: "worker2"
+  #   volumes:
+  #     - ./presto-multi:/opt/presto-server/etc
+  #   environment:
+  #     - COORDINATOR=false
+  #     - NODE_SCHEDULER_INCLUDE_COORDINATOR=false
+  #     - HTTP_SERVER_HTTP_PORT=8080
+  #     - QUERY_MAX_MEMORY=5GB
+  #     - QUERY_MAX_MEMORY_PER_NODE=1GB
+  #     - DISCOVERY_URI=http://coordinator:8080
+
+  # presto-1-worker-coordinator:
+  #   image: prestodb/presto:latest
+  #   container_name: presto-1-worker-coordinator
+  #   ports:
+  #     - "8081:8081"
+  #   volumes:
+  #     - ./presto-1-worker/coordinator:/opt/presto-server/etc
+  #   depends_on:
+  #     - cassandra
+  #     - mongo
+  #     - postgres
+
+  # presto-2-workers-coordinator:
+  #   image: prestodb/presto:latest
+  #   container_name: presto-2-workers-coordinator
+  #   ports:
+  #     - "8082:8082"
+  #   volumes:
+  #     - ./presto-2-workers/coordinator:/opt/presto-server/etc
+  #   depends_on:
+  #     - cassandra
+  #     - mongo
+  #     - postgres
+
+  # presto-2-workers-node-1:
+  #   image: prestodb/presto:latest
+  #   container_name: presto-2-workers-node-1
+  #   volumes:
+  #     - ./presto-2-workers/worker:/opt/presto-server/etc
+  #   depends_on:
+  #     - presto-2-workers-coordinator
+
+  # presto-2-workers-node-2:
+  #   image: prestodb/presto:latest
+  #   container_name: presto-2-workers-node-2
+  #   volumes:
+  #     - ./presto-2-workers/worker2:/opt/presto-server/etc
+  #   depends_on:
+  #     - presto-2-workers-coordinator
