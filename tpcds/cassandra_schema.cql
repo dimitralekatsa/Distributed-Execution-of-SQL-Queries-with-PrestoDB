@@ -89,6 +89,7 @@ CREATE TABLE IF NOT EXISTS ship_mode (
 
 CREATE TABLE IF NOT EXISTS time_dim (
     t_time_sk INT PRIMARY KEY,
+    t_time_id TEXT,
     t_time INT,
     t_hour INT,
     t_minute INT,
@@ -165,7 +166,7 @@ CREATE TABLE IF NOT EXISTS store (
     s_zip TEXT,
     s_country TEXT,
     s_gmt_offset DECIMAL,
-    s_tax_precentage DECIMAL
+    s_tax_percentage DECIMAL
 );
 
 CREATE TABLE IF NOT EXISTS call_center (
@@ -220,7 +221,7 @@ CREATE TABLE customer (
     c_birth_country TEXT,
     c_login TEXT,
     c_email_address TEXT,
-    c_last_review_date TEXT
+    c_last_review_date_sk INT
 );
 
 CREATE TABLE IF NOT EXISTS web_site (
@@ -254,8 +255,14 @@ CREATE TABLE IF NOT EXISTS web_site (
 
 CREATE TABLE IF NOT EXISTS store_returns (
     sr_returned_date_sk INT,
+    sr_return_time_sk INT,
     sr_item_sk INT,
     sr_customer_sk INT,
+    sr_cdemo_sk INT,
+    sr_hdemo_sk INT,
+    sr_addr_sk INT,
+    sr_store_sk INT,
+    sr_reason_sk INT, 
     sr_ticket_number INT,
     sr_return_quantity INT,
     sr_return_amt DECIMAL,
@@ -339,6 +346,7 @@ CREATE TABLE IF NOT EXISTS inventory (
 
 CREATE TABLE IF NOT EXISTS catalog_returns (
     cr_returned_date_sk INT,
+    cr_returned_time_sk INT,
     cr_item_sk INT,
     cr_refunded_customer_sk INT,
     cr_refunded_cdemo_sk INT,
@@ -369,6 +377,7 @@ CREATE TABLE IF NOT EXISTS catalog_returns (
 
 CREATE TABLE IF NOT EXISTS web_returns (
     wr_returned_date_sk INT,
+    wr_returned_time_sk INT,
     wr_item_sk INT,
     wr_refunded_customer_sk INT,
     wr_refunded_cdemo_sk INT,
