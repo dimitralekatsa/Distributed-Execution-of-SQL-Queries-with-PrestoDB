@@ -1,7 +1,6 @@
 import os
 import csv
 
-# Define your TPC-DS tables and their respective column names
 TABLE_SCHEMAS = {
     "customer_address": ["ca_address_sk", "ca_address_id", "ca_street_number", "ca_street_name", "ca_street_type",
                          "ca_suite_number", "ca_city", "ca_county", "ca_state", "ca_zip", "ca_country",
@@ -25,7 +24,7 @@ TABLE_SCHEMAS = {
     "store": ["s_store_sk", "s_store_id", "s_rec_start_date", "s_rec_end_date", "s_closed_date_sk", "s_store_name", "s_number_employees",
               "s_floor_space", "s_hours", "s_manager", "s_market_id", "s_geography_class", "s_market_desc", "s_market_manager",
               "s_division_id", "s_division_name", "s_company_id", "s_company_name", "s_street_number", "s_street_name", "s_street_type",
-              "s_suite_number", "s_city", "s_county", "s_state", "s_zip", "s_country", "s_gmt_offset", "s_tax_precentage"],
+              "s_suite_number", "s_city", "s_county", "s_state", "s_zip", "s_country", "s_gmt_offset", "s_tax_percentage"],
     "call_center": ["cc_call_center_sk", "cc_call_center_id", "cc_rec_start_date", "cc_rec_end_date", "cc_closed_date_sk",
                     "cc_open_date_sk", "cc_name", "cc_class", "cc_employees", "cc_sq_ft", "cc_hours", "cc_manager", "cc_mkt_id",
                     "cc_mkt_class", "cc_mkt_desc", "cc_market_manager", "cc_division", "cc_division_name", "cc_company",
@@ -33,9 +32,7 @@ TABLE_SCHEMAS = {
                     "cc_county", "cc_state", "cc_zip", "cc_country", "cc_gmt_offset", "cc_tax_percentage"],
     "customer": ["c_customer_sk", "c_customer_id", "c_current_cdemo_sk", "c_current_hdemo_sk", "c_current_addr_sk",
                  "c_first_shipto_date_sk", "c_first_sales_date_sk", "c_salutation", "c_first_name", "c_last_name", "c_preferred_cust_flag",
-                 "c_birth_day", "c_birth_month", "c_birth_year", "c_birth_country", "c_login", "c_email_address",
-                 "c_last_review_date"],  # Different schemas in github and documentation 
-                                            #(github: "c_last_review_date", documentation: "c_last_review_date_sk")
+                 "c_birth_day", "c_birth_month", "c_birth_year", "c_birth_country", "c_login", "c_email_address", "c_last_review_date_sk"],
     "web_site": ["web_site_sk", "web_site_id", "web_rec_start_date", "web_rec_end_date", "web_name", "web_open_date_sk",
                  "web_close_date_sk", "web_class", "web_manager", "web_mkt_id", "web_mkt_class", "web_mkt_desc",
                  "web_market_manager", "web_company_id", "web_company_name", "web_street_number", "web_street_name",
@@ -43,8 +40,8 @@ TABLE_SCHEMAS = {
                  "web_gmt_offset", "web_tax_percentage"],
     "store_returns": ["sr_returned_date_sk", "sr_return_time_sk", "sr_item_sk", "sr_customer_sk", "sr_cdemo_sk", "sr_hdemo_sk",
                       "sr_addr_sk", "sr_store_sk", "sr_reason_sk", "sr_ticket_number", "sr_return_quantity", "sr_return_amt",
-                      "sr_return_tax", "sr_return_amt_inc_tax", "sr_fee", "sr_return_ship_cost", "sr_refunded_cash", "sr_reversed_charge",
-                      "sr_store_credit", "sr_net_loss"],
+                      "sr_return_tax", "sr_return_amt_inc_tax", "sr_fee", "sr_return_ship_cost", "sr_refunded_cash",
+                      "sr_reversed_charge", "sr_store_credit", "sr_net_loss"],
     "household_demographics": ["hd_demo_sk", "hd_income_band_sk", "hd_buy_potential", "hd_dep_count", "hd_vehicle_count"],
     "web_page": ["wp_web_page_sk", "wp_web_page_id", "wp_rec_start_date", "wp_rec_end_date", "wp_creation_date_sk", "wp_access_date_sk",
                  "wp_autogen_flag", "wp_customer_sk", "wp_url", "wp_type", "wp_char_count", "wp_link_count", "wp_image_count",
@@ -54,7 +51,7 @@ TABLE_SCHEMAS = {
                   "p_channel_press", "p_channel_event", "p_channel_demo", "p_channel_details", "p_purpose", "p_discount_active"],
     "catalog_page": ["cp_catalog_page_sk", "cp_catalog_page_id", "cp_start_date_sk", "cp_end_date_sk", "cp_department",
                      "cp_catalog_number", "cp_catalog_page_number", "cp_description", "cp_type"],
-    "inventory": ["inv_date_sk", "inv_item_sk", "inv_warehouse_sk", "inv_quantity_on_hand]"],
+    "inventory": ["inv_date_sk", "inv_item_sk", "inv_warehouse_sk", "inv_quantity_on_hand"],
     "catalog_returns": ["cr_returned_date_sk", "cr_returned_time_sk", "cr_item_sk", "cr_refunded_customer_sk", "cr_refunded_cdemo_sk",
                         "cr_refunded_hdemo_sk", "cr_refunded_addr_sk", "cr_returning_customer_sk", "cr_returning_cdemo_sk",
                         "cr_returning_hdemo_sk", "cr_returning_addr_sk", "cr_call_center_sk", "cr_catalog_page_sk", "cr_ship_mode_sk",
@@ -110,7 +107,7 @@ def convert_dat_to_csv():
                 csv_writer.writerow(TABLE_SCHEMAS[table_name])  # Write headers
 
                 for line in dat_file:
-                    row = line.strip().split("|")[:-1]  # Remove trailing separator
+                    row = line.strip().split("|")
                     csv_writer.writerow(row)    
 
             print(f"Converted: {input_file} -> {output_file}")
