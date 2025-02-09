@@ -1,0 +1,187 @@
+{
+  "id": "6",
+  "name": "Output",
+  "identifier": "[ws_sold_date_sk, ws_sold_time_sk, ws_ship_date_sk, ws_item_sk, ws_bill_customer_sk, ws_bill_cdemo_sk, ws_bill_hdemo_sk, ws_bill_addr_sk, ws_ship_customer_sk, ws_ship_cdemo_sk, ws_ship_hdemo_sk, ws_ship_addr_sk, ws_web_page_sk, ws_web_site_sk, ws_ship_mode_sk, ws_warehouse_sk, ws_promo_sk, ws_order_number, ws_quantity, ws_wholesale_cost, ws_list_price, ws_sales_price, ws_ext_discount_amt, ws_ext_sales_price, ws_ext_wholesale_cost, ws_ext_list_price, ws_ext_tax, ws_coupon_amt, ws_ext_ship_cost, ws_net_paid, ws_net_paid_inc_tax, ws_net_paid_inc_ship, ws_net_paid_inc_ship_tax, ws_net_profit]",
+  "details": "",
+  "children": [
+    {
+      "id": "126",
+      "name": "Limit",
+      "identifier": "[100]",
+      "details": "",
+      "children": [
+        {
+          "id": "193",
+          "name": "LocalExchange",
+          "identifier": "[SINGLE] ()",
+          "details": "",
+          "children": [
+            {
+              "id": "172",
+              "name": "RemoteStreamingExchange",
+              "identifier": "[GATHER]",
+              "details": "",
+              "children": [
+                {
+                  "id": "171",
+                  "name": "LimitPartial",
+                  "identifier": "[100]",
+                  "details": "",
+                  "children": [
+                    {
+                      "id": "0",
+                      "name": "TableScan",
+                      "identifier": "[TableHandle {connectorId='postgres', connectorHandle='postgres:public.web_sales:null:public:web_sales', layout='Optional[{domains=ALL, additionalPredicate={}}]'}]",
+                      "details": "LAYOUT: {domains=ALL, additionalPredicate={}}\nws_sold_date_sk := JdbcColumnHandle{connectorId=postgres, columnName=ws_sold_date_sk, jdbcTypeHandle=JdbcTypeHandle{jdbcType=4, jdbcTypeName=int4, columnSize=10, decimalDigits=0}, columnType=integer, nullable=true, comment=Optional.empty} (2:6)\nws_ext_tax := JdbcColumnHandle{connectorId=postgres, columnName=ws_ext_tax, jdbcTypeHandle=JdbcTypeHandle{jdbcType=2, jdbcTypeName=numeric, columnSize=7, decimalDigits=2}, columnType=decimal(7,2), nullable=true, comment=Optional.empty} (2:6)\nws_sold_time_sk := JdbcColumnHandle{connectorId=postgres, columnName=ws_sold_time_sk, jdbcTypeHandle=JdbcTypeHandle{jdbcType=4, jdbcTypeName=int4, columnSize=10, decimalDigits=0}, columnType=integer, nullable=true, comment=Optional.empty} (2:6)\nws_ship_customer_sk := JdbcColumnHandle{connectorId=postgres, columnName=ws_ship_customer_sk, jdbcTypeHandle=JdbcTypeHandle{jdbcType=4, jdbcTypeName=int4, columnSize=10, decimalDigits=0}, columnType=integer, nullable=true, comment=Optional.empty} (2:6)\nws_net_paid_inc_ship := JdbcColumnHandle{connectorId=postgres, columnName=ws_net_paid_inc_ship, jdbcTypeHandle=JdbcTypeHandle{jdbcType=2, jdbcTypeName=numeric, columnSize=7, decimalDigits=2}, columnType=decimal(7,2), nullable=true, comment=Optional.empty} (2:6)\nws_ship_addr_sk := JdbcColumnHandle{connectorId=postgres, columnName=ws_ship_addr_sk, jdbcTypeHandle=JdbcTypeHandle{jdbcType=4, jdbcTypeName=int4, columnSize=10, decimalDigits=0}, columnType=integer, nullable=true, comment=Optional.empty} (2:6)\nws_web_page_sk := JdbcColumnHandle{connectorId=postgres, columnName=ws_web_page_sk, jdbcTypeHandle=JdbcTypeHandle{jdbcType=4, jdbcTypeName=int4, columnSize=10, decimalDigits=0}, columnType=integer, nullable=true, comment=Optional.empty} (2:6)\nws_net_paid_inc_ship_tax := JdbcColumnHandle{connectorId=postgres, columnName=ws_net_paid_inc_ship_tax, jdbcTypeHandle=JdbcTypeHandle{jdbcType=2, jdbcTypeName=numeric, columnSize=7, decimalDigits=2}, columnType=decimal(7,2), nullable=true, comment=Optional.empty} (2:6)\nws_bill_addr_sk := JdbcColumnHandle{connectorId=postgres, columnName=ws_bill_addr_sk, jdbcTypeHandle=JdbcTypeHandle{jdbcType=4, jdbcTypeName=int4, columnSize=10, decimalDigits=0}, columnType=integer, nullable=true, comment=Optional.empty} (2:6)\nws_order_number := JdbcColumnHandle{connectorId=postgres, columnName=ws_order_number, jdbcTypeHandle=JdbcTypeHandle{jdbcType=4, jdbcTypeName=int4, columnSize=10, decimalDigits=0}, columnType=integer, nullable=false, comment=Optional.empty} (2:6)\nws_net_profit := JdbcColumnHandle{connectorId=postgres, columnName=ws_net_profit, jdbcTypeHandle=JdbcTypeHandle{jdbcType=2, jdbcTypeName=numeric, columnSize=7, decimalDigits=2}, columnType=decimal(7,2), nullable=true, comment=Optional.empty} (2:6)\nws_ship_cdemo_sk := JdbcColumnHandle{connectorId=postgres, columnName=ws_ship_cdemo_sk, jdbcTypeHandle=JdbcTypeHandle{jdbcType=4, jdbcTypeName=int4, columnSize=10, decimalDigits=0}, columnType=integer, nullable=true, comment=Optional.empty} (2:6)\nws_warehouse_sk := JdbcColumnHandle{connectorId=postgres, columnName=ws_warehouse_sk, jdbcTypeHandle=JdbcTypeHandle{jdbcType=4, jdbcTypeName=int4, columnSize=10, decimalDigits=0}, columnType=integer, nullable=true, comment=Optional.empty} (2:6)\nws_list_price := JdbcColumnHandle{connectorId=postgres, columnName=ws_list_price, jdbcTypeHandle=JdbcTypeHandle{jdbcType=2, jdbcTypeName=numeric, columnSize=7, decimalDigits=2}, columnType=decimal(7,2), nullable=true, comment=Optional.empty} (2:6)\nws_ext_wholesale_cost := JdbcColumnHandle{connectorId=postgres, columnName=ws_ext_wholesale_cost, jdbcTypeHandle=JdbcTypeHandle{jdbcType=2, jdbcTypeName=numeric, columnSize=7, decimalDigits=2}, columnType=decimal(7,2), nullable=true, comment=Optional.empty} (2:6)\nws_sales_price := JdbcColumnHandle{connectorId=postgres, columnName=ws_sales_price, jdbcTypeHandle=JdbcTypeHandle{jdbcType=2, jdbcTypeName=numeric, columnSize=7, decimalDigits=2}, columnType=decimal(7,2), nullable=true, comment=Optional.empty} (2:6)\nws_net_paid := JdbcColumnHandle{connectorId=postgres, columnName=ws_net_paid, jdbcTypeHandle=JdbcTypeHandle{jdbcType=2, jdbcTypeName=numeric, columnSize=7, decimalDigits=2}, columnType=decimal(7,2), nullable=true, comment=Optional.empty} (2:6)\nws_ship_mode_sk := JdbcColumnHandle{connectorId=postgres, columnName=ws_ship_mode_sk, jdbcTypeHandle=JdbcTypeHandle{jdbcType=4, jdbcTypeName=int4, columnSize=10, decimalDigits=0}, columnType=integer, nullable=true, comment=Optional.empty} (2:6)\nws_item_sk := JdbcColumnHandle{connectorId=postgres, columnName=ws_item_sk, jdbcTypeHandle=JdbcTypeHandle{jdbcType=4, jdbcTypeName=int4, columnSize=10, decimalDigits=0}, columnType=integer, nullable=false, comment=Optional.empty} (2:6)\nws_quantity := JdbcColumnHandle{connectorId=postgres, columnName=ws_quantity, jdbcTypeHandle=JdbcTypeHandle{jdbcType=4, jdbcTypeName=int4, columnSize=10, decimalDigits=0}, columnType=integer, nullable=true, comment=Optional.empty} (2:6)\nws_wholesale_cost := JdbcColumnHandle{connectorId=postgres, columnName=ws_wholesale_cost, jdbcTypeHandle=JdbcTypeHandle{jdbcType=2, jdbcTypeName=numeric, columnSize=7, decimalDigits=2}, columnType=decimal(7,2), nullable=true, comment=Optional.empty} (2:6)\nws_ext_discount_amt := JdbcColumnHandle{connectorId=postgres, columnName=ws_ext_discount_amt, jdbcTypeHandle=JdbcTypeHandle{jdbcType=2, jdbcTypeName=numeric, columnSize=7, decimalDigits=2}, columnType=decimal(7,2), nullable=true, comment=Optional.empty} (2:6)\nws_ext_ship_cost := JdbcColumnHandle{connectorId=postgres, columnName=ws_ext_ship_cost, jdbcTypeHandle=JdbcTypeHandle{jdbcType=2, jdbcTypeName=numeric, columnSize=7, decimalDigits=2}, columnType=decimal(7,2), nullable=true, comment=Optional.empty} (2:6)\nws_bill_hdemo_sk := JdbcColumnHandle{connectorId=postgres, columnName=ws_bill_hdemo_sk, jdbcTypeHandle=JdbcTypeHandle{jdbcType=4, jdbcTypeName=int4, columnSize=10, decimalDigits=0}, columnType=integer, nullable=true, comment=Optional.empty} (2:6)\nws_ext_list_price := JdbcColumnHandle{connectorId=postgres, columnName=ws_ext_list_price, jdbcTypeHandle=JdbcTypeHandle{jdbcType=2, jdbcTypeName=numeric, columnSize=7, decimalDigits=2}, columnType=decimal(7,2), nullable=true, comment=Optional.empty} (2:6)\nws_bill_customer_sk := JdbcColumnHandle{connectorId=postgres, columnName=ws_bill_customer_sk, jdbcTypeHandle=JdbcTypeHandle{jdbcType=4, jdbcTypeName=int4, columnSize=10, decimalDigits=0}, columnType=integer, nullable=true, comment=Optional.empty} (2:6)\nws_web_site_sk := JdbcColumnHandle{connectorId=postgres, columnName=ws_web_site_sk, jdbcTypeHandle=JdbcTypeHandle{jdbcType=4, jdbcTypeName=int4, columnSize=10, decimalDigits=0}, columnType=integer, nullable=true, comment=Optional.empty} (2:6)\nws_ext_sales_price := JdbcColumnHandle{connectorId=postgres, columnName=ws_ext_sales_price, jdbcTypeHandle=JdbcTypeHandle{jdbcType=2, jdbcTypeName=numeric, columnSize=7, decimalDigits=2}, columnType=decimal(7,2), nullable=true, comment=Optional.empty} (2:6)\nws_coupon_amt := JdbcColumnHandle{connectorId=postgres, columnName=ws_coupon_amt, jdbcTypeHandle=JdbcTypeHandle{jdbcType=2, jdbcTypeName=numeric, columnSize=7, decimalDigits=2}, columnType=decimal(7,2), nullable=true, comment=Optional.empty} (2:6)\nws_bill_cdemo_sk := JdbcColumnHandle{connectorId=postgres, columnName=ws_bill_cdemo_sk, jdbcTypeHandle=JdbcTypeHandle{jdbcType=4, jdbcTypeName=int4, columnSize=10, decimalDigits=0}, columnType=integer, nullable=true, comment=Optional.empty} (2:6)\nws_promo_sk := JdbcColumnHandle{connectorId=postgres, columnName=ws_promo_sk, jdbcTypeHandle=JdbcTypeHandle{jdbcType=4, jdbcTypeName=int4, columnSize=10, decimalDigits=0}, columnType=integer, nullable=true, comment=Optional.empty} (2:6)\nws_ship_date_sk := JdbcColumnHandle{connectorId=postgres, columnName=ws_ship_date_sk, jdbcTypeHandle=JdbcTypeHandle{jdbcType=4, jdbcTypeName=int4, columnSize=10, decimalDigits=0}, columnType=integer, nullable=true, comment=Optional.empty} (2:6)\nws_net_paid_inc_tax := JdbcColumnHandle{connectorId=postgres, columnName=ws_net_paid_inc_tax, jdbcTypeHandle=JdbcTypeHandle{jdbcType=2, jdbcTypeName=numeric, columnSize=7, decimalDigits=2}, columnType=decimal(7,2), nullable=true, comment=Optional.empty} (2:6)\nws_ship_hdemo_sk := JdbcColumnHandle{connectorId=postgres, columnName=ws_ship_hdemo_sk, jdbcTypeHandle=JdbcTypeHandle{jdbcType=4, jdbcTypeName=int4, columnSize=10, decimalDigits=0}, columnType=integer, nullable=true, comment=Optional.empty} (2:6)\n",
+                      "children": [],
+                      "remoteSources": [],
+                      "estimates": [
+                        {
+                          "outputRowCount": "NaN",
+                          "totalSize": "NaN",
+                          "confident": "LOW",
+                          "variableStatistics": {},
+                          "joinNodeStatsEstimate": {
+                            "nullJoinBuildKeyCount": "NaN",
+                            "joinBuildKeyCount": "NaN",
+                            "nullJoinProbeKeyCount": "NaN",
+                            "joinProbeKeyCount": "NaN"
+                          },
+                          "tableWriterNodeStatsEstimate": {
+                            "taskCountIfScaledWriter": "NaN"
+                          },
+                          "partialAggregationStatsEstimate": {
+                            "inputBytes": "NaN",
+                            "outputBytes": "NaN",
+                            "inputRowCount": "NaN",
+                            "outputRowCount": "NaN"
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "remoteSources": [],
+                  "estimates": [
+                    {
+                      "outputRowCount": 100.0,
+                      "totalSize": "NaN",
+                      "confident": "LOW",
+                      "variableStatistics": {},
+                      "joinNodeStatsEstimate": {
+                        "nullJoinBuildKeyCount": "NaN",
+                        "joinBuildKeyCount": "NaN",
+                        "nullJoinProbeKeyCount": "NaN",
+                        "joinProbeKeyCount": "NaN"
+                      },
+                      "tableWriterNodeStatsEstimate": {
+                        "taskCountIfScaledWriter": "NaN"
+                      },
+                      "partialAggregationStatsEstimate": {
+                        "inputBytes": "NaN",
+                        "outputBytes": "NaN",
+                        "inputRowCount": "NaN",
+                        "outputRowCount": "NaN"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "remoteSources": [],
+              "estimates": [
+                {
+                  "outputRowCount": 100.0,
+                  "totalSize": "NaN",
+                  "confident": "LOW",
+                  "variableStatistics": {},
+                  "joinNodeStatsEstimate": {
+                    "nullJoinBuildKeyCount": "NaN",
+                    "joinBuildKeyCount": "NaN",
+                    "nullJoinProbeKeyCount": "NaN",
+                    "joinProbeKeyCount": "NaN"
+                  },
+                  "tableWriterNodeStatsEstimate": {
+                    "taskCountIfScaledWriter": "NaN"
+                  },
+                  "partialAggregationStatsEstimate": {
+                    "inputBytes": "NaN",
+                    "outputBytes": "NaN",
+                    "inputRowCount": "NaN",
+                    "outputRowCount": "NaN"
+                  }
+                }
+              ]
+            }
+          ],
+          "remoteSources": [],
+          "estimates": [
+            {
+              "outputRowCount": 100.0,
+              "totalSize": "NaN",
+              "confident": "LOW",
+              "variableStatistics": {},
+              "joinNodeStatsEstimate": {
+                "nullJoinBuildKeyCount": "NaN",
+                "joinBuildKeyCount": "NaN",
+                "nullJoinProbeKeyCount": "NaN",
+                "joinProbeKeyCount": "NaN"
+              },
+              "tableWriterNodeStatsEstimate": {
+                "taskCountIfScaledWriter": "NaN"
+              },
+              "partialAggregationStatsEstimate": {
+                "inputBytes": "NaN",
+                "outputBytes": "NaN",
+                "inputRowCount": "NaN",
+                "outputRowCount": "NaN"
+              }
+            }
+          ]
+        }
+      ],
+      "remoteSources": [],
+      "estimates": [
+        {
+          "outputRowCount": 100.0,
+          "totalSize": "NaN",
+          "confident": "LOW",
+          "variableStatistics": {},
+          "joinNodeStatsEstimate": {
+            "nullJoinBuildKeyCount": "NaN",
+            "joinBuildKeyCount": "NaN",
+            "nullJoinProbeKeyCount": "NaN",
+            "joinProbeKeyCount": "NaN"
+          },
+          "tableWriterNodeStatsEstimate": { "taskCountIfScaledWriter": "NaN" },
+          "partialAggregationStatsEstimate": {
+            "inputBytes": "NaN",
+            "outputBytes": "NaN",
+            "inputRowCount": "NaN",
+            "outputRowCount": "NaN"
+          }
+        }
+      ]
+    }
+  ],
+  "remoteSources": [],
+  "estimates": [
+    {
+      "outputRowCount": 100.0,
+      "totalSize": "NaN",
+      "confident": "LOW",
+      "variableStatistics": {},
+      "joinNodeStatsEstimate": {
+        "nullJoinBuildKeyCount": "NaN",
+        "joinBuildKeyCount": "NaN",
+        "nullJoinProbeKeyCount": "NaN",
+        "joinProbeKeyCount": "NaN"
+      },
+      "tableWriterNodeStatsEstimate": { "taskCountIfScaledWriter": "NaN" },
+      "partialAggregationStatsEstimate": {
+        "inputBytes": "NaN",
+        "outputBytes": "NaN",
+        "inputRowCount": "NaN",
+        "outputRowCount": "NaN"
+      }
+    }
+  ]
+}
