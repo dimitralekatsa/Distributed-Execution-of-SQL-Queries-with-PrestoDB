@@ -1,44 +1,85 @@
-# Information-Systems-Analysis-and-Design-Class
- Distributed Execution of SQL Queries
+# Distributed Execution of SQL Queries
 
-**ERROR:** WSL integration with distro 'Ubuntu-20.04' unexpectedly stopped. Do you want to restart it?
-1. wsl --shutdown
-2. wsl --set-version Ubuntu-20.04 2
-3. End task Docker Desktop in Task Manager
-4. Open Docker Desktop.
-Settings -> Resources -> WSL Integration -> Unckeck "Ubuntu-20.04"
-5. wsl --unregister Ubuntu-20.04
+This project was developed as part of the **Information Systems Analysis and Design** class. It focuses on evaluating and comparing the execution of TPC-DS benchmark queries across distributed data systems using **PrestoDB**, **PostgreSQL**, **Cassandra**, and **MongoDB**.
 
-**Start Docker:** docker-compose up -d
+---
 
-**Stop Docker:** docker-compose down
+## Setup Instructions
 
-**TPC-DS Benchmark Download and Data Generation**
-(Windows User: open WSL)
-1. git clone https://github.com/databricks/tpcds-kit.git
-2. cd tpcds-kit/tools
-3. make OS=LINUX
-4. ./dsdgen -SCALE 12 -DIR ./data
+### 1. Clone the project and prepare TPC-DS data
+```bash
+git clone https://github.com/databricks/tpcds-kit.git
+cd tpcds-kit/tools
+make OS=LINUX
+./dsdgen -SCALE 12 -DIR ./data
+python3 convert_files_to_csv.py
+```
 
-**1. python3 ~/tpcds-kit/tools/tpcds/convert_files_to_csv.py**
+### 2. Start Docker
+```bash
+docker-compose up -d
+```
 
-POSTGRES
-1.  docker start postgres
-2. docker exec -it postgres psql -U admin -d testdb
-3. \i /tpcds/postgres_schema.sql
-4. \dt -- only to check if the tables have been created
-5. \q
-6. docker cp ~/tpcds-kit/tools/data/ postgres:/data/
-7. docker exec -it postgres psql -U admin -d testdb
-8. \i /tpcds/load_postgres.sql
-9. \q
+---
 
-CASSANDRA
-1. docker run -d --name cassandra --memory=4g -v ~/tpcds-kit/tools/tpcds:/data cassandra
-2. docker exec -it cassandra cqlsh -f /data/cassandra_schema.cql
-4. docker exec -it cassandra cqlsh -e "USE tpcds; DESCRIBE TABLES;" -- only to check if the tables have been created
-5. python3 ~/tpcds-kit/tools/tpcds/load_cassandra.py
+## Load TPC-DS Data
 
-MONGODB
-1. docker start mongodb
-2. python3 ~/tpcds-kit/tools/tpcds/load_mongodb.py
+### PostgreSQL
+```bash
+docker exec -it postgres psql -U admin -d testdb
+\i /tpcds/postgres_schema.sql
+\dt               # Check if tables created
+\q
+docker cp ./data postgres:/data/
+docker exec -it postgres psql -U admin -d testdb
+\i /tpcds/load_postgres.sql
+\q
+```
+
+### Cassandra
+```bash
+docker exec -it cassandra cqlsh -f /data/cassandra_schema.cql
+# Verify with:
+cqlsh> USE tpcds; DESCRIBE TABLES;
+python3 load_cassandra.py
+```
+
+### MongoDB
+```bash
+docker start mongodb
+python3 load_mongodb.py
+```
+
+---
+
+## Query Execution with Presto
+Use the Presto web interface or CLI to run queries across the different backends (Postgres, Cassandra, MongoDB). This allows benchmarking and analysis of execution time and correctness.
+
+---
+
+## Benchmarking & Analysis
+We use the **TPC-DS benchmark** to compare:
+- Query execution time
+- Query correctness
+- Data loading overhead
+- Suitability of each system for analytical queries
+
+---
+
+## Related Tools
+- [TPC-DS Kit (Databricks)](https://github.com/databricks/tpcds-kit)
+- [PrestoDB](https://prestodb.io/)
+- [PostgreSQL](https://www.postgresql.org/)
+- [Apache Cassandra](https://cassandra.apache.org/)
+- [MongoDB](https://www.mongodb.com/)
+
+---
+
+## Troubleshooting
+For system-specific issues (e.g., WSL/Docker), see [TROUBLESHOOTING.md](TROUBLESHOOTING.md).
+
+---
+
+## Assignment Context
+This project corresponds to the fourth group project, under the **SQL3** task, in the "Information Systems Analysis and Design" course.
+
